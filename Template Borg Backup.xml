@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<zabbix_export>
+    <version>4.4</version>
+    <date>2020-03-03T20:59:19Z</date>
+    <groups>
+        <group>
+            <name>Templates</name>
+        </group>
+    </groups>
+    <templates>
+        <template>
+            <template>Template Borg Backup</template>
+            <name>Template Borg Backup</name>
+            <groups>
+                <group>
+                    <name>Templates</name>
+                </group>
+            </groups>
+            <applications>
+                <application>
+                    <name>Borg Backup</name>
+                </application>
+            </applications>
+            <items>
+                <item>
+                    <name>Borg Repository All Compressed Size</name>
+                    <key>borg.compressed_all</key>
+                    <delay>1h</delay>
+                    <units>B</units>
+                    <applications>
+                        <application>
+                            <name>Borg Backup</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>Borg Repository Last Compressed Size</name>
+                    <key>borg.compressed_last</key>
+                    <delay>1h</delay>
+                    <units>B</units>
+                    <applications>
+                        <application>
+                            <name>Borg Backup</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>Borg Last Backup</name>
+                    <key>borg.date</key>
+                    <delay>1h</delay>
+                    <units>unixtime</units>
+                    <applications>
+                        <application>
+                            <name>Borg Backup</name>
+                        </application>
+                    </applications>
+                    <triggers>
+                        <trigger>
+                            <expression>{fuzzytime(259200)}=0</expression>
+                            <name>Borg No Backup for 3 Days</name>
+                            <priority>WARNING</priority>
+                        </trigger>
+                        <trigger>
+                            <expression>{fuzzytime(604800)}=0</expression>
+                            <name>Borg No Backup for 7 Days</name>
+                            <priority>HIGH</priority>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <name>Borg Repository All Deduplicated Size</name>
+                    <key>borg.dedup_all</key>
+                    <delay>1h</delay>
+                    <units>B</units>
+                    <applications>
+                        <application>
+                            <name>Borg Backup</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>Borg Repository Last Deduplicated Size</name>
+                    <key>borg.dedup_last</key>
+                    <delay>1h</delay>
+                    <units>B</units>
+                    <applications>
+                        <application>
+                            <name>Borg Backup</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>Borg Last Backup Duration</name>
+                    <key>borg.duration</key>
+                    <delay>1h</delay>
+                    <units>s</units>
+                    <applications>
+                        <application>
+                            <name>Borg Backup</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>Borg Last Backup Files</name>
+                    <key>borg.files</key>
+                    <delay>1h</delay>
+                    <applications>
+                        <application>
+                            <name>Borg Backup</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>Borg Repository All Original Size</name>
+                    <key>borg.original_all</key>
+                    <delay>1h</delay>
+                    <units>B</units>
+                    <applications>
+                        <application>
+                            <name>Borg Backup</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>Borg Repository Last Original Size</name>
+                    <key>borg.original_last</key>
+                    <delay>1h</delay>
+                    <units>B</units>
+                    <applications>
+                        <application>
+                            <name>Borg Backup</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>Borg Status</name>
+                    <key>borg.status</key>
+                    <delay>1h</delay>
+                    <trends>0</trends>
+                    <value_type>CHAR</value_type>
+                    <applications>
+                        <application>
+                            <name>Borg Backup</name>
+                        </application>
+                    </applications>
+                    <request_method>POST</request_method>
+                    <triggers>
+                        <trigger>
+                            <expression>{str(OK)}=0</expression>
+                            <name>Borg Backup Failed</name>
+                            <priority>WARNING</priority>
+                        </trigger>
+                    </triggers>
+                </item>
+            </items>
+        </template>
+    </templates>
+</zabbix_export>
